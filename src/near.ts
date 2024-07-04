@@ -18,9 +18,10 @@ export const getKeyStore = () => {
   return new keyStores.InMemoryKeyStore();
 };
 
-export const provider = new providers.JsonRpcProvider({
-  url: getConfig().nodeUrl,
-});
+export const getProvider = () =>
+  new providers.JsonRpcProvider({
+    url: getConfig().nodeUrl,
+  });
 
 export const getMemorySigner = async ({
   AccountId,
@@ -82,6 +83,7 @@ export const getSignedTransactionsByMemoryKey = async ({
 }) => {
   const transactions = transformTransactions(transactionsRef, AccountId);
 
+  const provider = getProvider();
   const block = await provider.block({ finality: 'final' });
 
   const signedTransactions: Array<nearTransactions.SignedTransaction> = [];
@@ -144,6 +146,7 @@ export const sendTransactionsByMemoryKey = async ({
   signedTransactions: nearTransactions.SignedTransaction[];
 }) => {
   try {
+    const provider = getProvider();
     const results: Array<providers.FinalExecutionOutcome> = [];
 
     for (let i = 0; i < signedTransactions.length; i += 1) {
