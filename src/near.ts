@@ -18,10 +18,6 @@ export const getKeyStore = () => {
   return new keyStores.InMemoryKeyStore();
 };
 
-export const provider = new providers.JsonRpcProvider({
-  url: getConfig().nodeUrl,
-});
-
 export const getMemorySigner = async ({
   AccountId,
   keyPair,
@@ -72,10 +68,12 @@ const validateAccessKey = (
 };
 
 export const getSignedTransactionsByMemoryKey = async ({
+  provider,
   transactionsRef,
   AccountId,
   keyPair,
 }: {
+  provider: providers.JsonRpcProvider;
   transactionsRef: Transaction[];
   AccountId: string;
   keyPair: KeyPair;
@@ -139,8 +137,10 @@ export const getSignedTransactionsByMemoryKey = async ({
 };
 
 export const sendTransactionsByMemoryKey = async ({
+  provider,
   signedTransactions,
 }: {
+  provider: providers.JsonRpcProvider;
   signedTransactions: nearTransactions.SignedTransaction[];
 }) => {
   try {
