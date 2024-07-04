@@ -1,6 +1,5 @@
 import {
   keyStores,
-  KeyPair,
   InMemorySigner,
   providers,
   transactions as nearTransactions,
@@ -8,17 +7,11 @@ import {
 } from 'near-api-js';
 import BN from 'bn.js';
 import { getConfig } from './constant';
-import fs from 'fs';
-import {
-  NoPuiblicKeyError,
-  InValidAccessKeyError,
-  NoCredential,
-} from './error';
+import { NoPuiblicKeyError, InValidAccessKeyError } from './error';
 import { AccessKeyView } from 'near-api-js/lib/providers/provider';
-import { TransformedTransaction } from './types';
+import { NearWallet, TransformedTransaction } from './types';
 import { Transaction } from './types';
 import { transformTransactions } from './utils';
-import { AccountIdMisMatch } from './error';
 
 export const getKeyStore = () => {
   return new keyStores.InMemoryKeyStore();
@@ -28,29 +21,10 @@ export const provider = new providers.JsonRpcProvider({
   url: getConfig().nodeUrl,
 });
 
-export const getMemorySigner = async ({
-  AccountId,
-  keyPath,
-}: {
-  AccountId: string;
-  keyPath: string;
-}) => {
+export const getMemorySigner = async ({ wallet }: { wallet: NearWallet }) => {
   try {
-    // const homedir = os.homedir();
-    const credentials = JSON.parse(fs.readFileSync(keyPath).toString());
-
-    const credentialAccountId = credentials?.account_id;
-
-    if (!credentialAccountId) throw NoCredential;
-
-    if (credentialAccountId !== AccountId) throw AccountIdMisMatch;
-
     const myKeyStore = new keyStores.InMemoryKeyStore();
-    myKeyStore.setKey(
-      getConfig().networkId,
-      AccountId,
-      KeyPair.fromString(credentials.private_key)
-    );
+    myKeyStore.setKey(getConfig().networkId, wallet.accountId, wallet.keyPair);
 
     const signer = new InMemorySigner(myKeyStore);
 
@@ -93,21 +67,18 @@ const validateAccessKey = (
 export const getSignedTransactionsByMemoryKey = async ({
   transactionsRef,
   AccountId,
-  keyPath,
+  wallet,
 }: {
   transactionsRef: Transaction[];
   AccountId: string;
-  keyPath: string;
+  wallet: NearWallet;
 }) => {
   const transactions = transformTransactions(transactionsRef, AccountId);
 
   const block = await provider.block({ finality: 'final' });
 
   const signedTransactions: Array<nearTransactions.SignedTransaction> = [];
-  const signer = await getMemorySigner({
-    AccountId,
-    keyPath,
-  });
+  const signer = await getMemorySigner({ wallet });
 
   for (let i = 0; i < transactions.length; i += 1) {
     const transaction = transactions[i];

@@ -1,5 +1,11 @@
 import Big from 'big.js';
 import { PoolMode } from './v1-swap/swap';
+import { KeyPair } from 'near-api-js';
+
+export interface NearWallet {
+  accountId: string;
+  keyPair: KeyPair;
+}
 
 export interface TokenMetadata {
   id: string;
