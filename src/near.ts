@@ -9,7 +9,6 @@ import {
 import BN from 'bn.js';
 import { getConfig } from './constant';
 import fs from 'fs';
-import os from 'os';
 import {
   NoPuiblicKeyError,
   InValidAccessKeyError,
@@ -22,9 +21,7 @@ import { transformTransactions } from './utils';
 import { AccountIdMisMatch } from './error';
 
 export const getKeyStore = () => {
-  return typeof window === 'undefined'
-    ? new keyStores.InMemoryKeyStore()
-    : new keyStores.BrowserLocalStorageKeyStore();
+  return new keyStores.InMemoryKeyStore();
 };
 
 export const provider = new providers.JsonRpcProvider({

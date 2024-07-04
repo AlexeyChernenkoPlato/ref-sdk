@@ -9,9 +9,7 @@ export const ONE_YOCTO_NEAR = '0.000000000000000000000001';
 let ENV: string | undefined = '';
 let INDEXER_URL: string | undefined = '';
 export function getConfig(
-  env: string | undefined = ENV ||
-    process.env.NEAR_ENV ||
-    process.env.REACT_APP_REF_SDK_ENV,
+  env: string | undefined = ENV || process.env.NEAR_ENV,
   indexerUrl: string | undefined = INDEXER_URL
 ) {
   ENV = env;
