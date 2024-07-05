@@ -73,7 +73,7 @@ export const getRefPools = async (
 
 export const fetchAllPools = async (perPage?: number) => {
   if (perPage) {
-    DEFAULT_PAGE_LIMIT = Math.min(perPage, 500);
+    DEFAULT_PAGE_LIMIT = Math.min(perPage, 5000);
   }
   const totalPools = await getTotalPools();
   const pages = Math.ceil(totalPools / DEFAULT_PAGE_LIMIT);
