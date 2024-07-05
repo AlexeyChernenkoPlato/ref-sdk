@@ -41,11 +41,13 @@ export const REPLACE_TOKENS = [
   WOO_ID,
 ];
 
-let near = new Near({
+const createNearConnection = () => new Near({
   keyStore: getKeyStore(),
   headers: {},
   ...getConfig(),
 });
+
+let near = createNearConnection();
 export const init_env = (env: string, indexerUrl?: string) => {
   near = new Near({
     keyStore: getKeyStore(),
@@ -59,7 +61,7 @@ export const refFiViewFunction = async ({
   methodName,
   args,
 }: RefFiViewFunctionOptions) => {
-  const nearConnection = await near.account(REF_FI_CONTRACT_ID);
+  const nearConnection = await createNearConnection().account(REF_FI_CONTRACT_ID);
 
   return nearConnection.viewFunction(REF_FI_CONTRACT_ID, methodName, args);
 };
