@@ -1,4 +1,4 @@
-import { TokenMetadata } from './types';
+import { RefEnv, TokenMetadata } from './types';
 
 export const FEE_DIVISOR = 10000;
 
@@ -10,7 +10,7 @@ let ENV: string | undefined = '';
 let INDEXER_URL: string | undefined = '';
 export function getConfig(
   params?: Partial<{
-    env: string;
+    env: RefEnv;
     indexerUrl: string;
     nodeUrl: string;
   }>

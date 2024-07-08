@@ -20,6 +20,7 @@ import {
   TokenMetadata,
   FTStorageBalance,
   RefFiViewFunctionOptions,
+  RefEnv,
 } from './types';
 import { AccountView } from 'near-api-js/lib/providers/provider';
 import { Transaction } from './types';
@@ -41,18 +42,23 @@ export const REPLACE_TOKENS = [
   WOO_ID,
 ];
 
-const createNearConnection = () => new Near({
-  keyStore: getKeyStore(),
-  headers: {},
-  ...getConfig(),
-});
+const createNearConnection = () =>
+  new Near({
+    keyStore: getKeyStore(),
+    headers: {},
+    ...getConfig(),
+  });
 
 let near = createNearConnection();
-export const init_env = (env: string, indexerUrl?: string) => {
+export const init_env = (params: {
+  env: RefEnv;
+  indexerUrl?: string;
+  nodeUrl?: string;
+}) => {
   near = new Near({
     keyStore: getKeyStore(),
     headers: {},
-    ...getConfig({ env, indexerUrl }),
+    ...getConfig(params),
   });
   return switchEnv();
 };
@@ -61,7 +67,9 @@ export const refFiViewFunction = async ({
   methodName,
   args,
 }: RefFiViewFunctionOptions) => {
-  const nearConnection = await createNearConnection().account(REF_FI_CONTRACT_ID);
+  const nearConnection = await createNearConnection().account(
+    REF_FI_CONTRACT_ID
+  );
 
   return nearConnection.viewFunction(REF_FI_CONTRACT_ID, methodName, args);
 };

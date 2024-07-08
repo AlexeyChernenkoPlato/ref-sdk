@@ -9,6 +9,8 @@ export interface TokenMetadata {
   icon: string;
 }
 
+export type RefEnv = 'mainnet' | 'testnet' | 'dev';
+
 export type PoolKind = 'SIMPLE_POOL' | 'STABLE_SWAP' | 'RATED_SWAP';
 
 export type StablePoolKind = 'STABLE_SWAP' | 'RATED_SWAP';
