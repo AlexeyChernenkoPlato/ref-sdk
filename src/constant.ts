@@ -8,6 +8,7 @@ export const STORAGE_TO_REGISTER_WITH_MFT = '0.1';
 export const ONE_YOCTO_NEAR = '0.000000000000000000000001';
 let ENV: string | undefined = '';
 let INDEXER_URL: string | undefined = '';
+let NODE_URL: string | undefined;
 export function getConfig(
   params?: Partial<{
     env: RefEnv;
@@ -18,10 +19,11 @@ export function getConfig(
   const {
     env = ENV || process.env.NEAR_ENV,
     indexerUrl = INDEXER_URL,
-    nodeUrl,
+    nodeUrl = NODE_URL,
   } = params || {};
   ENV = env;
   INDEXER_URL = indexerUrl;
+  NODE_URL = nodeUrl;
   switch (env) {
     case 'mainnet':
       return {
