@@ -71,6 +71,12 @@ export const getRefPools = async (
     );
 };
 
+export const groupPools = (pools: Pool[]) => ({
+  simplePools: pools.filter(p => p.pool_kind && p.pool_kind === 'SIMPLE_POOL'),
+  unRatedPools: pools.filter(p => p.pool_kind && p.pool_kind === 'STABLE_SWAP'),
+  ratedPools: pools.filter(p => p.pool_kind && p.pool_kind === 'RATED_SWAP'),
+});
+
 export const fetchAllPools = async (perPage?: number, maxLimit = 5000) => {
   if (perPage) {
     DEFAULT_PAGE_LIMIT = Math.min(perPage, maxLimit);
@@ -82,13 +88,6 @@ export const fetchAllPools = async (perPage?: number, maxLimit = 5000) => {
       [...Array(pages)].fill(0).map((_, i) => getRefPools(i + 1))
     )
   ).flat() as Pool[];
-  return {
-    simplePools: pools.filter(
-      p => p.pool_kind && p.pool_kind === 'SIMPLE_POOL'
-    ),
-    unRatedPools: pools.filter(
-      p => p.pool_kind && p.pool_kind === 'STABLE_SWAP'
-    ),
-    ratedPools: pools.filter(p => p.pool_kind && p.pool_kind === 'RATED_SWAP'),
-  };
+
+  return groupPools(pools);
 };
