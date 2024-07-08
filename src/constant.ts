@@ -9,16 +9,24 @@ export const ONE_YOCTO_NEAR = '0.000000000000000000000001';
 let ENV: string | undefined = '';
 let INDEXER_URL: string | undefined = '';
 export function getConfig(
-  env: string | undefined = ENV || process.env.NEAR_ENV,
-  indexerUrl: string | undefined = INDEXER_URL
+  params?: Partial<{
+    env: string;
+    indexerUrl: string;
+    nodeUrl: string;
+  }>
 ) {
+  const {
+    env = ENV || process.env.NEAR_ENV,
+    indexerUrl = INDEXER_URL,
+    nodeUrl,
+  } = params || {};
   ENV = env;
   INDEXER_URL = indexerUrl;
   switch (env) {
     case 'mainnet':
       return {
         networkId: 'mainnet',
-        nodeUrl: 'https://rpc.mainnet.near.org',
+        nodeUrl: nodeUrl || 'https://rpc.mainnet.near.org',
         walletUrl: 'https://wallet.near.org',
         WRAP_NEAR_CONTRACT_ID: 'wrap.near',
         REF_FI_CONTRACT_ID: 'v2.ref-finance.near',
@@ -30,7 +38,7 @@ export function getConfig(
     case 'testnet':
       return {
         networkId: 'testnet',
-        nodeUrl: 'https://rpc.testnet.near.org',
+        nodeUrl: nodeUrl || 'https://rpc.testnet.near.org',
         walletUrl: 'https://wallet.testnet.near.org',
         indexerUrl: indexerUrl || 'https://testnet-indexer.ref-finance.com',
         WRAP_NEAR_CONTRACT_ID: 'wrap.testnet',
@@ -42,7 +50,7 @@ export function getConfig(
     case 'dev':
       return {
         networkId: 'testnet',
-        nodeUrl: 'https://rpc.testnet.near.org',
+        nodeUrl: nodeUrl || 'https://rpc.testnet.near.org',
         walletUrl: 'https://wallet.testnet.near.org',
         indexerUrl: indexerUrl || 'https://dev-indexer.ref-finance.com',
         WRAP_NEAR_CONTRACT_ID: 'wrap.testnet',
@@ -66,7 +74,7 @@ export function getConfig(
   }
 }
 
-export let config = getConfig();
+export let config = getConfig({});
 
 export let REF_FI_CONTRACT_ID = config.REF_FI_CONTRACT_ID;
 
@@ -150,7 +158,7 @@ export const POINTLEFTRANGE = -800000;
 export const POINTRIGHTRANGE = 800000;
 
 export const switchEnv = () => {
-  config = getConfig();
+  config = getConfig({});
   REF_FI_CONTRACT_ID = config.REF_FI_CONTRACT_ID;
   WRAP_NEAR_CONTRACT_ID = config.WRAP_NEAR_CONTRACT_ID;
   REF_TOKEN_ID = config.REF_TOKEN_ID;
