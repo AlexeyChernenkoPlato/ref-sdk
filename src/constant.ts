@@ -74,7 +74,7 @@ export function getConfig(
   }
 }
 
-export let config = getConfig({});
+export let config = getConfig();
 
 export let REF_FI_CONTRACT_ID = config.REF_FI_CONTRACT_ID;
 
@@ -157,8 +157,14 @@ export const CONSTANT_D = 1.0001;
 export const POINTLEFTRANGE = -800000;
 export const POINTRIGHTRANGE = 800000;
 
-export const switchEnv = () => {
-  config = getConfig({});
+export const switchEnv = (
+  params: Partial<{
+    env: RefEnv;
+    indexerUrl: string;
+    nodeUrl: string;
+  }>
+) => {
+  config = getConfig(params);
   REF_FI_CONTRACT_ID = config.REF_FI_CONTRACT_ID;
   WRAP_NEAR_CONTRACT_ID = config.WRAP_NEAR_CONTRACT_ID;
   REF_TOKEN_ID = config.REF_TOKEN_ID;

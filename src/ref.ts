@@ -60,7 +60,7 @@ export const init_env = (params: {
     headers: {},
     ...getConfig(params),
   });
-  return switchEnv();
+  return switchEnv(params);
 };
 
 export const refFiViewFunction = async ({
