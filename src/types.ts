@@ -1,6 +1,18 @@
 import Big from 'big.js';
 import { PoolMode } from './v1-swap/swap';
 
+export interface RefConfig {
+  networkId: string;
+  nodeUrl: string;
+  walletUrl: string;
+  WRAP_NEAR_CONTRACT_ID: string;
+  REF_FI_CONTRACT_ID: string;
+  REF_TOKEN_ID: string;
+  indexerUrl: string;
+  explorerUrl: string;
+  REF_DCL_SWAP_CONTRACT_ID: string;
+}
+
 export interface TokenMetadata {
   id: string;
   name: string;

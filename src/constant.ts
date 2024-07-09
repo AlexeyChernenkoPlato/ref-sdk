@@ -1,4 +1,4 @@
-import { RefEnv, TokenMetadata } from './types';
+import { RefConfig, RefEnv, TokenMetadata } from './types';
 
 export const FEE_DIVISOR = 10000;
 
@@ -15,7 +15,7 @@ export function getConfig(
     indexerUrl: string;
     nodeUrl: string;
   }>
-) {
+): RefConfig {
   const {
     env = ENV || process.env.NEAR_ENV,
     indexerUrl = INDEXER_URL,
@@ -76,7 +76,7 @@ export function getConfig(
   }
 }
 
-export let config = getConfig();
+export let config: RefConfig = getConfig();
 
 export let REF_FI_CONTRACT_ID = config.REF_FI_CONTRACT_ID;
 
