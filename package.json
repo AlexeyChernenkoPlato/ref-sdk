@@ -19,6 +19,7 @@
     "prepare": "tsdx build --format esm,cjs,umd",
     "size": "size-limit",
     "type": "tsc --noEmit",
+    "deploy": "yarn build && npm publish --access public",
     "analyze": "size-limit --why"
   },
   "husky": {
