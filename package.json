@@ -1,8 +1,10 @@
 {
   "version": "1.3.7",
   "license": "MIT",
+  "description": "This is PLT_REF SDK",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -31,7 +33,7 @@
     "trailingComma": "es5"
   },
   "name": "@plt/ref-sdk",
-  "author": "Plato Labs",
+  "author": "PlatoLabs",
   "module": "dist/ref-sdk.esm.js",
   "size-limit": [
     {
@@ -75,5 +77,17 @@
     "node-notifier": "^8.0.1",
     "loader-utils": "^3.2.1",
     "decode-uri-component": "^0.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexeyChernenkoPlato/ref-sdk.git"
+  },
+  "keywords": [
+    "plt",
+    "ref"
+  ],
+  "bugs": {
+    "url": "https://github.com/AlexeyChernenkoPlato/ref-sdk/issues"
+  },
+  "homepage": "https://github.com/AlexeyChernenkoPlato/ref-sdk#readme"
 }
