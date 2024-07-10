@@ -1,4 +1,4 @@
-import { config, WRAP_NEAR_CONTRACT_ID, NEAR_META_DATA } from './constant';
+import { config } from './constant';
 import { REPLACE_TOKENS } from './ref';
 import metaIconDefaults from './metaIcons';
 

@@ -5,11 +5,8 @@
 import Big from 'big.js';
 import { checkIntegerSumOfAllocations } from './parallelSwapLogic';
 
-import { TokenMetadata } from '../types';
-
 import { ftGetTokenMetadata } from '../ref';
 
-import { percentLess, toNonDivisibleNumber } from '../utils';
 Big.RM = 0;
 Big.DP = 40;
 Big.NE = -40;

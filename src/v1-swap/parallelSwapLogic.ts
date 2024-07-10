@@ -1,7 +1,7 @@
 //@ts-nocheck
 import Big from 'big.js';
 
-import { Pool } from '../types';
+import type { Pool } from '../types';
 
 Big.RM = 0;
 Big.DP = 40;

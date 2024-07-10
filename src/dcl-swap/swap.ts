@@ -1,21 +1,17 @@
-import { TokenMetadata, Transaction } from '../types';
+import type { TokenMetadata, Transaction } from '../types';
 
 import {
   priceToPoint,
   toNonDivisibleNumber,
   toPrecision,
   registerAccountOnToken,
+  percentLess,
 } from '../utils';
 import { ONE_YOCTO_NEAR, WRAP_NEAR_CONTRACT_ID, config } from '../constant';
 import { DCLSwapGetStorageBalance } from '../ref';
 import { DCL_POOL_FEE_LIST, getDCLPoolId } from './dcl-pool';
-import {
-  nearDepositTransaction,
-  ftGetStorageBalance,
-  refDCLSwapViewFunction,
-} from '../ref';
+import { ftGetStorageBalance, refDCLSwapViewFunction } from '../ref';
 import _ from 'lodash';
-import { toReadableNumber, percentLess } from '../utils';
 import { NoPoolOnThisPair, SlippageError } from '../error';
 
 interface SwapInfo {

@@ -1,22 +1,20 @@
-import { TokenMetadata, Pool, StablePool, EstimateSwapView } from '../types';
-import {
-  toReadableNumber,
-  toNonDivisibleNumber,
-  scientificNotationToString,
-} from '../utils';
+import type { TokenMetadata, Pool, StablePool, EstimateSwapView } from '../types';
 import Big from 'big.js';
 import { SameInputTokenError, ZeroInputError, NoPoolError } from '../error';
-import { ONLY_ZEROS, toPrecision } from '../utils';
 import _ from 'lodash';
 import { FEE_DIVISOR } from '../constant';
 import { getSwappedAmount } from '../stable-swap';
 import { ftGetTokenMetadata, ftGetTokensMetadata } from '../ref';
-import { isStablePool } from '../utils';
 import { getTokensTiny } from '../indexer';
 import {
   getStablePoolDecimal,
   isStablePoolToken,
   poolFormatter,
+  toReadableNumber,
+  toNonDivisibleNumber,
+  scientificNotationToString,
+  ONLY_ZEROS, toPrecision,
+  isStablePool,
 } from '../utils';
 import {
   stableSmart,

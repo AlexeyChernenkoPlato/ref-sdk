@@ -1,21 +1,11 @@
-import { TokenMetadata, Transaction } from '../types';
+import type { Transaction } from '../types';
 import { NoOrderFound, OrderNoRemainedAmount } from '../error';
 import {
-  priceToPoint,
-  toNonDivisibleNumber,
-  toPrecision,
-  registerAccountOnToken,
-} from '../utils';
-import {
-  ONE_YOCTO_NEAR,
-  WRAP_NEAR_CONTRACT_ID,
   config,
   POINTLEFTRANGE,
   POINTRIGHTRANGE,
 } from '../constant';
 import {
-  nearDepositTransaction,
-  ftGetStorageBalance,
   refDCLSwapViewFunction,
 } from '../ref';
 

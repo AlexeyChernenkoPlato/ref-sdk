@@ -12,11 +12,7 @@ import {
   STABLE_LP_TOKEN_DECIMALS,
 } from './constant';
 
-import {
-  transactions,
-  utils,
-  transactions as nearTransactions,
-} from 'near-api-js';
+import { utils } from 'near-api-js';
 
 import _, { sortBy } from 'lodash';
 
@@ -24,7 +20,6 @@ import BN from 'bn.js';
 
 import * as math from 'mathjs';
 import {
-  REF_FI_CONTRACT_ID,
   WRAP_NEAR_CONTRACT_ID,
   STORAGE_TO_REGISTER_WITH_MFT,
 } from './constant';

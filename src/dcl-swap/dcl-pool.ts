@@ -1,14 +1,5 @@
-import { TokenMetadata, Transaction } from '../types';
+import type { TokenMetadata } from '../types';
 import {
-  priceToPoint,
-  toNonDivisibleNumber,
-  toPrecision,
-  registerAccountOnToken,
-} from '../utils';
-import { ONE_YOCTO_NEAR, WRAP_NEAR_CONTRACT_ID, config } from '../constant';
-import {
-  nearDepositTransaction,
-  ftGetStorageBalance,
   refDCLSwapViewFunction,
 } from '../ref';
 import { NoFeeToPool } from '../error';

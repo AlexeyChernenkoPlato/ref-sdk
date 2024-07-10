@@ -2,28 +2,21 @@ import {
   REF_FI_CONTRACT_ID,
   config,
   WRAP_NEAR_CONTRACT_ID,
-  NEAR_META_DATA,
   getConfig,
   switchEnv,
 } from './constant';
-import {
-  keyStores,
-  Near,
-  providers,
-  WalletConnection,
-  utils,
-} from 'near-api-js';
+import { Near, providers, utils } from 'near-api-js';
 import { NoAccountIdFound, TokenNotExistError, DCLInValid } from './error';
 import { getKeyStore } from './near';
 
-import {
+import type {
   TokenMetadata,
   FTStorageBalance,
   RefFiViewFunctionOptions,
   RefEnv,
 } from './types';
-import { AccountView } from 'near-api-js/lib/providers/provider';
-import { Transaction } from './types';
+import type { AccountView } from 'near-api-js/lib/providers/provider';
+import type { Transaction } from './types';
 import { ONE_YOCTO_NEAR, REF_TOKEN_ID, REF_META_DATA } from './constant';
 
 import metaIconDefaults from './metaIcons';

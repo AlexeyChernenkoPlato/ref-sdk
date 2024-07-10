@@ -9,9 +9,8 @@ import {
 import BN from 'bn.js';
 import { getConfig } from './constant';
 import { NoPuiblicKeyError, InValidAccessKeyError } from './error';
-import { AccessKeyView } from 'near-api-js/lib/providers/provider';
-import { TransformedTransaction } from './types';
-import { Transaction } from './types';
+import type { AccessKeyView } from 'near-api-js/lib/providers/provider';
+import type { Transaction, TransformedTransaction } from './types';
 import { transformTransactions } from './utils';
 
 export const getKeyStore = () => {

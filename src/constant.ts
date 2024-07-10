@@ -1,4 +1,4 @@
-import { RefConfig, RefEnv, TokenMetadata } from './types';
+import type { RefConfig, RefEnv, TokenMetadata } from './types';
 
 export const FEE_DIVISOR = 10000;
 
