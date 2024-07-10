@@ -32,7 +32,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@plt/ref-sdk",
+  "name": "@plt_dev/ref-sdk",
   "author": "PlatoLabs",
   "module": "dist/ref-sdk.esm.js",
   "size-limit": [
